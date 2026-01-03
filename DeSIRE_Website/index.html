@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeSIRE | Advanced Manufacturing Resource Portal</title>
+    <style>
+        :root {
+            --primary-dark: #37474F;
+            --accent-slate: #546E7A;
+            --energy-amber: #FFB300;
+            --food-green: #81C784;
+            --pharma-teal: #4DD0E1;
+            --bg-light: #F9F9F9;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--bg-light);
+            color: var(--primary-dark);
+            line-height: 1.3;
+            overflow-x: hidden;
+        }
+
+        /* Softer, Professional Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-slate) 100%);
+            color: var(--white);
+            padding: 1.2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--energy-amber);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 5.5rem; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300; /* Lighter weight for a "modern" feel */
+        }
+
+        header p {
+            font-size: 1rem;
+            margin-top: 0.2rem;
+            opacity: 0.9;
+        }
+
+        /* Integrated Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            background: var(--white);
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .dropdown { position: relative; }
+
+        .dropbtn {
+            background-color: var(--white);
+            color: var(--primary-dark);
+            padding: 12px 18px; 
+            font-size: 11px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .dropdown:hover .dropbtn { color: var(--energy-amber); background: #f0f0f0; }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 280px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            border-top: 3px solid var(--energy-amber);
+        }
+
+        .dropdown-content a {
+            color: var(--primary-dark);
+            padding: 10px 14px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 12px;
+        }
+
+        .dropdown-content a:hover { background-color: #f8f9fa; color: var(--accent-slate); }
+
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* Dashboard and Cards */
+        .container {
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 15px 25px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Color-Coded Industry Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .dash-item {
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .energy { background-color: var(--energy-amber); }
+        .food { background-color: var(--food-green); }
+        .pharma { background-color: var(--pharma-teal); }
+
+        .dash-item h3 { margin: 0 0 5px 0; font-size: 1.1rem; text-transform: uppercase; }
+        .dash-item p { margin: 0; font-size: 0.9rem; opacity: 0.95; }
+
+        /* Document Viewer Overlay */
+        #lesson-view { display: none; height: 100vh; background: var(--primary-dark); }
+
+        .viewer-header {
+            background: var(--white);
+            color: var(--primary-dark);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-btn {
+            background: var(--accent-slate);
+            color: var(--white);
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        iframe { width: 100%; height: calc(100% - 50px); border: none; }
+
+        .highlight { color: var(--accent-slate); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="home-view">
+    <header>
+        <h1>DeSIRE Program</h1>
+        <p>Developing STEM Identity in Rural Audiences through Community-based Engineering Design</p>
+    </header>
+
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">1. Concepts in Advanced Mfg</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="load('Concepts_In_Advanced_Manufacturing/1A-History_of_Advanced_Manufacturing.pdf')">1A-History of Adv Manufacturing</a>
+                <a href="#" onclick="load('Concepts_In_Advanced_Manufacturing/1B-Advanced_Manufacturing.pdf')">1B-Advanced Manufacturing</a>
+                <a href="#" onclick="load('Concepts_In_Advanced_Manufacturing/1C-Research.pdf')">1C-Research</a>
+                <a href="#" onclick="load('Concepts_In_Advanced_Manufacturing/1D-Coding.pdf')">1D-Coding</a>
+                <a href="#" onclick="load('Concepts_In_Advanced_Manufacturing/1E-Careers.pdf')">1E-Careers</a>
+                <a href="#" onclick="load('Concepts_In_Advanced_Manufacturing/1F-Google_Sheets.pdf')">1F-Google Sheets</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">2. Intro to xArm</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="load('Intro_to_the_xArm_Robot/2A-Ultrasonic_Devices.pdf')">2A-Ultrasonic Devices</a>
+                <a href="#" onclick="load('Intro_to_the_xArm_Robot/2B-PC_Software_Instruction.pdf')">2B-PC Software Instruction</a>
+                <a href="#" onclick="load('Intro_to_the_xArm_Robot/2C-Bus_Servo_Learning.pdf')">2C-Bus Servo Learning</a>
+                <a href="#" onclick="load('Intro_to_the_xArm_Robot/2D-Start_xArm_1S.pdf')">2D-Start xArm 1S</a>
+                <a href="#" onclick="load('Intro_to_the_xArm_Robot/2E-Adjust_Deviation.pdf')">2E-Adjust Deviation</a>
+                <a href="#" onclick="load('Intro_to_the_xArm_Robot/2F-Download_Action_Group.pdf')">2F-Download Action Group</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">3. Controlling xArm</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="load('Controlling_the_xArm_Robot/3A-Wireless_Controller.pdf')">3A-Wireless Controller</a>
+                <a href="#" onclick="load('Controlling_the_xArm_Robot/3B-Smart_Phone_Control.pdf')">3B-Smart Phone Control</a>
+                <a href="#" onclick="load('Controlling_the_xArm_Robot/3C-Mouse_Control.pdf')">3C-Mouse Control</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">4. Programming xArm</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="load('Programming_the_xArm/4A-Action_Programming.pdf')">4A-Action Programming</a>
+                <a href="#" onclick="load('Programming_the_xArm/4B-APP_Custom_Control.pdf')">4B-APP Custom Control</a>
+                <a href="#" onclick="load('Programming_the_xArm/4C-Integrate_Action_Files.pdf')">4C-Integrate Action Files</a>
+                <a href="#" onclick="load('Programming_the_xArm/4D-Offline_Run_Learning.pdf')">4D-Offline Run Learning</a>
+                <a href="#" onclick="load('Programming_the_xArm/4E-Mobile_APP_Programming.pdf')">4E-Mobile APP Programming</a>
+                <a href="#" onclick="load('Programming_the_xArm/4F-Manual_Button_Programming.pdf')">4F-Manual Button Programming</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">5. Servo Communication</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="load('Servo_Communication/5A-Bus_Servo_Communication.pdf')">5A-Bus Servo Communication</a>
+                <a href="#" onclick="load('Servo_Communication/5B-Series_Servo_Controller_Communication.pdf')">5B-Series Servo Protocol</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">6. Uno Secondary Dev</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6A-Setup_Development_Environment_1.pdf')">6A-Setup Env 1</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6B-Action_Group_Download.pdf')">6B-Action Group Download</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6C-Setup_Development_Environment_2.pdf')">6C-Setup Env 2</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6D-Touch_Control.pdf')">6D-Touch Control</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6E-Claw_Machine.pdf')">6E-Claw Machine</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6F-Password_Lock.pdf')">6F-Password Lock</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6G-Intelligent_Sound_Control.pdf')">6G-Intelligent Sound Control</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6H-Auto_Sorting.pdf')">6H-Auto Sorting</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6I-Distance_Measurement.pdf')">6I-Distance Measurement</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6J-Grab_At_A_Certain_Distance.pdf')">6J-Grab at Distance</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6K-Light_Sensitivity.pdf')">6K-Light Sensitivity</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6L-Color_Identify.pdf')">6L-Color Identify</a>
+                <a href="#" onclick="load('Uno_Secondary_Development_Board/6M-Color_Sorting.pdf')">6M-Color Sorting</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>Program Overview</h2>
+            <p>The DeSIRE program creates community-based engineering design experiences for rural middle school students in North Carolina. Students engage in an Engineering Design elective course closely tied to local advanced manufacturing practices in Food, Pharmaceutical, and Energy Systems.</p>
+        </div>
+
+        <div class="dashboard">
+            <div class="dash-item energy"><h3>Energy Systems</h3><p>Power Production & Distribution</p></div>
+            <div class="dash-item food"><h3>Food Production</h3><p>Robotic Processing & Packaging</p></div>
+            <div class="dash-item pharma"><h3>Pharmaceutical</h3><p>Lifesaving Drug Synthesis</p></div>
+        </div>
+
+        <div class="card">
+            <h2>How to Use This Portal</h2>
+            <p>Select a unit using the <span class="highlight">Buttons</span> at the top. Selecting a lesson will load the document below. Click <strong>Home</strong> in the document viewer to return.</p>
+        </div>
+    </div>
+</div>
+
+<div id="lesson-view">
+    <div class="viewer-header">
+        <span id="lesson-title" style="font-weight:bold; text-transform: uppercase;">Document Viewer</span>
+        <a href="#" class="home-btn" onclick="showHome()">Home</a>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+</div>
+
+<script>
+    function load(folderAndFile) {
+        document.getElementById('home-view').style.display = 'none';
+        document.getElementById('lesson-view').style.display = 'block';
+        document.getElementById('pdf-frame').src = folderAndFile;
+        const fileName = folderAndFile.split('/').pop().replace(/_/g, ' ').replace('.pdf', '');
+        document.getElementById('lesson-title').innerText = fileName;
+    }
+    function showHome() {
+        document.getElementById('home-view').style.display = 'block';
+        document.getElementById('lesson-view').style.display = 'none';
+        document.getElementById('pdf-frame').src = '';
+    }
+</script>
+
+</body>
+</html>
